@@ -220,23 +220,27 @@ function nextRound() {
 
 function guessLetter(letter) {
     if (!gameState.gameActive) return;
-    
-    if (gameState.guessedLetters.includes(letter)) {
-        return;
-    }
-    
+
+    if (gameState.guessedLetters.includes(letter)) return;
+
     gameState.guessedLetters.push(letter);
-    
+
+    const button = document.getElementById('key-' + letter);
+    if (button) {
+        button.disabled = true;
+    }
+
     if (!gameState.currentWord.includes(letter)) {
         gameState.wrongGuesses++;
         updateHangman();
     }
-    
+
     updateWordDisplay();
     updateWrongLetters();
     updateLives();
     checkGameStatus();
 }
+
 
 function updateWordDisplay() {
     const display = document.getElementById('wordDisplay');
