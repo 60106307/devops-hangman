@@ -100,18 +100,18 @@ function addWord() {
     const input = document.getElementById('newWord');
     const word = input.value.trim().toUpperCase();
 
-    if (!word) {
-        alert('Word cannot be empty.');
+    if (word === '') {
+        alert("Word cannot be empty.");
         return;
     }
 
-    if (!isValidWord(word)) {
-        alert('Only letters A-Z allowed.');
+    if (!/^[A-Z]+$/.test(word)) {
+        alert("Words must contain only letters A-Z.");
         return;
     }
 
     if (wordBank.includes(word)) {
-        alert('Duplicate word not allowed.');
+        alert("Duplicate words are not allowed.");
         return;
     }
 
@@ -120,6 +120,7 @@ function addWord() {
     saveWordBank();
     displayWordBank();
 }
+
 
 
 function editWord(index) {
